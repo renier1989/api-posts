@@ -9,59 +9,34 @@ use App\Http\Resources\V1\PostResource;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return PostResource::collection(Post::latest()->paginate(2));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function pruebas(){
+        $coll = [
+            'id' => '123',
+            'nombre' => 'renier',
+            'ciudad' => 'Peru',
+        ];
+        return response()->json($coll);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function show(Post $post)
     {
         // return $post;
         return new PostResource($post);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Post $post)
     {
-        //
+        try {
+            // $post->delete();
+            return response()->json(['message' => 'El Post fue elimindao con exito']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 422);        
+        }
     }
 }
