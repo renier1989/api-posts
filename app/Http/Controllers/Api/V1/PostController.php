@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return PostResource::collection(Post::latest()->paginate(2));
+        return PostResource::collection(Post::latest()->orderBy('created_at','desc')->paginate());
     }
 
     public function pruebas(){
