@@ -2,21 +2,30 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\PostController as PostV1;
+use App\Http\Controllers\Api\V2\PostController as PostV2;
 
-// // Ruta usada en la Clase 8 del Curso
+/** CLASE 8 */
 // Route::apiResource('v1/post', App\Http\Controllers\Api\V1\PostController::class)->only('show');  
 
-// // Ruta usada en la calse 9 del curso 
+/** CLASE 9 */
 // Route::apiResource('v1/post', App\Http\Controllers\Api\V1\PostController::class)
 // ->only(['index','show'])
 // ;
-
-
-// Ruta usada en la calse 9 del curso  + Reto
-Route::apiResource('v1/post', App\Http\Controllers\Api\V1\PostController::class)
-->only(['index','show','destroy'])
-;
-
 // Route::controller(App\Http\Controllers\Api\V1\PostController::class)->group(function(){
 //     Route::get('v1/pruebas', 'pruebas')->name('pruebas');
 // });
+
+/** CLASE 10 */
+// Route::apiResource('v1/post', App\Http\Controllers\Api\V1\PostController::class)
+// ->only(['index','show','destroy'])
+// ;
+
+/** CLASE 11 */
+Route::apiResource('v1/post', PostV1::class)
+->only(['index','show','destroy'])
+;
+
+Route::apiResource('v2/post', PostV2::class)
+->only(['index','show'])
+;

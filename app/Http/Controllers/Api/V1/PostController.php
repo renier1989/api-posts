@@ -41,7 +41,6 @@ class PostController extends Controller
              * que la operacion se ejecuto con exito
              */
             // return response()->json(['message' => 'El Post fue elimindao con exito'],204);
-            
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);        
         }
