@@ -30,7 +30,18 @@ use App\Http\Controllers\Api\V2\PostController as PostV2;
 // ->only(['index','show'])
 // ;
 
-/** CLASE 14 */
+// /** CLASE 14 */
+// Route::apiResource('v1/post', PostV1::class)
+// ->only(['index','show','destroy'])
+// ->middleware('auth:sanctum')
+// ;
+
+// Route::apiResource('v2/post', PostV2::class)
+// ->only(['index','show'])
+// ->middleware('auth:sanctum')
+// ;
+
+/** CLASE 15 */
 Route::apiResource('v1/post', PostV1::class)
 ->only(['index','show','destroy'])
 ->middleware('auth:sanctum')
@@ -40,3 +51,9 @@ Route::apiResource('v2/post', PostV2::class)
 ->only(['index','show'])
 ->middleware('auth:sanctum')
 ;
+
+Route::post('login' ,
+    [
+        App\Http\Controllers\Api\LoginController::class,
+        'login'
+    ] );
